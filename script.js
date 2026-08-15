@@ -42,8 +42,8 @@ DEPLOYMENT STEPS:
 4. Click "Deploy", copy the Web App URL, and paste it into GOOGLE_SHEET_SCRIPT_URL below.
 ---------------------------------------------------- */
 
-// 🔴 Replace this URL with your deployed Google Apps Script Web App URL
-const GOOGLE_SHEET_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
+// 🔴 Deployed Google Apps Script Web App URL for Lead Collection
+const GOOGLE_SHEET_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwkU9Ak-rf94zqggJ8CW2ae6d8UHfTodKcMQia4tWawtEtXMYzJrP068FdwAhJ-CrUa/exec';
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('Aarogya India Landing Page initialized');
@@ -94,7 +94,7 @@ function handleFormSubmit(event, source) {
   let city = form.querySelector('input[type="text"][id$="City"]')?.value || '';
   let contactMethod = form.querySelector('input[type="radio"]:checked')?.value || 'Phone';
 
-  console.log(`[Form Submitted from ${source}]`, { name, phone, city, contactMethod });
+  console.log(`[Form Submitted from ${source}] Submitting to Google Sheet...`, { name, phone, city, contactMethod });
 
   // Prepare payload for Google Sheet
   const formData = new FormData();
@@ -104,15 +104,13 @@ function handleFormSubmit(event, source) {
   formData.append('contactMethod', contactMethod);
   formData.append('source', source);
 
-  // Submit to Google Sheet Web App endpoint if configured
-  if (GOOGLE_SHEET_SCRIPT_URL && GOOGLE_SHEET_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
+  // Submit to Google Sheet Web App endpoint
+  if (GOOGLE_SHEET_SCRIPT_URL) {
     fetch(GOOGLE_SHEET_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors', // Avoids CORS issues with Google Apps Script
       body: formData
     }).catch(err => console.error('Google Sheet submission error:', err));
-  } else {
-    console.warn('Google Sheet script URL not set yet. Leads are logged locally.');
   }
 
   // Build thank-you URL with query parameters
