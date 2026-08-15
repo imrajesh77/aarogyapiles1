@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>धन्यवाद! आपका परामर्श अनुरोध प्राप्त हो गया है | आरोग्य इंडिया</title>
+  <meta name="description" content="धन्यवाद! आरोग्य इंडिया टीम जल्द ही आपके परामर्श के लिए संपर्क करेगी। 100% गोपनीय परामर्श।">
+
+  <!-- Google Fonts: Noto Sans Devanagari & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .thank-you-wrapper {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+    }
+
+    .thank-you-card {
+      background: #ffffff;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      max-width: 680px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      position: relative;
+    }
+
+    .thank-you-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary-emerald), var(--accent-gold));
+      border-radius: 24px 24px 0 0;
+    }
+
+    .success-badge-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--emerald-soft);
+      color: var(--primary-emerald);
+      border: 2px solid #a7f3d0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin: 0 auto 20px auto;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .thank-you-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-emerald);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .thank-you-lead {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    .user-greeting {
+      font-weight: 700;
+      color: var(--primary-emerald);
+    }
+
+    .next-steps-card {
+      background: var(--bg-cream);
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .next-steps-card h4 {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--primary-emerald);
+      margin-bottom: 14px;
+    }
+
+    .steps-list {
+      list-style: none;
+    }
+
+    .steps-list li {
+      position: relative;
+      padding-left: 28px;
+      margin-bottom: 12px;
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .steps-list li::before {
+      content: '✔';
+      position: absolute;
+      left: 0;
+      color: var(--primary-emerald);
+      font-weight: 900;
+    }
+
+    .thank-you-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .btn-return-home {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--primary-emerald);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-top: 20px;
+      transition: color 0.2s ease;
+    }
+
+    .btn-return-home:hover {
+      color: var(--emerald-dark);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <span><span class="pulse-dot"></span> 100% गोपनीय परामर्श • आरोग्य इंडिया हेल्थकेयर</span>
+      <a href="tel:+919876543210" class="top-phone-link">
+        📞 सहायता हेल्पलाइन: +91 98765 43210
+      </a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+        </div>
+        <div class="logo-text">
+          <span class="brand-name">आरोग्य इंडिया</span>
+          <span class="brand-tagline">Aarogya India • आयुर्वेदिक हेल्थकेयर</span>
+        </div>
+      </a>
+
+      <div class="header-actions">
+        <a href="index.html" class="btn-primary-sm">🏠 होम पेज</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- THANK YOU MAIN WRAPPER -->
+  <main class="thank-you-wrapper bg-cream">
+    <div class="container">
+      <div class="thank-you-card">
+        <div class="success-badge-icon">✓</div>
+
+        <h1 class="thank-you-title">
+          धन्यवाद! आपका परामर्श अनुरोध प्राप्त हो गया है
+        </h1>
+
+        <p class="thank-you-lead">
+          <span id="greetingText" class="user-greeting">नमस्ते!</span> आरोग्य इंडिया की केयर टीम 15 से 30 मिनट के भीतर आपके नंबर पर गोपनीय संपर्क करेगी।
+        </p>
+
+        <div class="next-steps-card">
+          <h4>आगे क्या होगा? (Next Steps):</h4>
+          <ul class="steps-list">
+            <li><strong>गोपनीय फोन कॉल / व्हाट्सएप:</strong> हमारी टीम आपके सुविधानुसार संपर्क करके समय निर्धारित करेगी।</li>
+            <li><strong>डॉक्टर मूल्यांकन:</strong> आचार्य ललित मोहन शर्मा और विशेषज्ञ टीम से अपनी समस्या पर खुलकर परामर्श लें।</li>
+            <li><strong>100% गोपनीयता:</strong> आपकी जानकारी पूर्णतः सुरक्षित और गोपनीय रखी जाएगी।</li>
+          </ul>
+        </div>
+
+        <div class="thank-you-actions">
+          <a id="waDirectBtn" href="https://wa.me/919876543210?text=%E0%A4%B9%E0%A5%87%E0%A4%B2%E0%A5%8B%20%E0%A4%86%E0%A4%B0%E0%A5%8B%E0%A4%97%E0%A5%8D%E0%A4%AF%20%E0%A4%87%E0%A4%82%E0%A4%A1%E0%A4%BF%E0%A4%AF%E0%A4%BE%2C%20%E0%A4%AE%E0%A5%81%E0%A4%9B%E0%A5%87%20%E0%A4%AA%E0%A4%BE%E0%A4%87%E0%A4%B2%E0%A5%8D%E0%A4%B8%20%E0%A4%AA%E0%A4%B0%E0%A4%BE%E0%A4%AE%E0%A4%B0%E0%A5%8D%E0%A4%B6%20%E0%A4%95%E0%A5%87%20%E0%A4%AC%E0%A4%BE%E0%A4%B0%E0%A5%87%20%E0%A4%AE%E0%A5%87%E0%A4%82%20%E0%A4%A4%E0%A5%81%E0%A4%B0%E0%A4%82%E0%A4%A4%20%E0%A4%9C%E0%A4%BE%E0%A4%A8%E0%A4%95%E0%A4%BE%E0%A4%B0%E0%A5%8B%20%E0%A4%9A%E0%A4%BE%E0%A4%B9%E0%A4%BF%E0%A4%AF%E0%A5%87" target="_blank" rel="noopener" class="btn-whatsapp-full">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.84 9.84 0 0 0 12.04 2zm5.8 14.07c-.24.67-1.4 1.24-1.92 1.32-.49.08-1.12.11-1.81-.11-.42-.14-1-.33-1.74-.65-3.08-1.34-5.09-4.43-5.24-4.63-.16-.2-1.25-1.67-1.25-3.18 0-1.51.79-2.26 1.07-2.57.28-.31.62-.39.83-.39.21 0 .42.01.6.01.19 0 .45-.07.7.53.25.6.86 2.1.94 2.25.08.15.13.33.03.53-.1.2-.15.33-.3.51-.15.18-.32.4-.46.54-.15.15-.3.31-.13.61.17.3.77 1.27 1.65 2.06 1.13 1.01 2.09 1.32 2.39 1.47.3.15.48.13.66-.08.18-.21.77-.9.98-1.2.21-.3.42-.25.7-.15.28.1.77.83.77.83z"/></svg>
+            💬 तुरंत व्हाट्सएप पर बात करें
+          </a>
+
+          <a href="tel:+919876543210" class="btn-primary-md">
+            📞 हेल्पलाइन पर डायरेक्ट कॉल करें
+          </a>
+        </div>
+
+        <a href="index.html" class="btn-return-home">
+          ← मुख्य पृष्ठ (Homepage) पर वापस जाएं
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Disclaimer -->
+  <footer class="site-footer">
+    <div class="container text-center">
+      <p>© 2026 Aarogya India. सर्वाधिकार सुरक्षित। 100% गोपनीय आयुर्वेदिक देखभाल।</p>
+    </div>
+  </footer>
+
+  <script>
+    // Read URL search parameters to personalize greeting
+    document.addEventListener('DOMContentLoaded', () => {
+      const params = new URLSearchParams(window.location.search);
+      const name = params.get('name');
+      const city = params.get('city');
+      const phone = params.get('phone');
+      
+      if (name) {
+        document.getElementById('greetingText').innerText = `नमस्ते ${name}${city ? ' (' + city + ')' : ''}!`;
+        
+        // Update WhatsApp pre-filled link with user details
+        const waText = encodeURIComponent(`हेलो आरोग्य इंडिया, मेरा नाम ${name} है (${city || ''})। मैंने फ़ॉर्म भरा है और तुरंत परामर्श के बारे में जानकारी चाहिए। मेरा नंबर: ${phone || ''}`);
+        document.getElementById('waDirectBtn').href = `https://wa.me/919876543210?text=${waText}`;
+      }
+    });
+  </script>
+</body>
+</html>

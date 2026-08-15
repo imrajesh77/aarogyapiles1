@@ -39,12 +39,11 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Form Submission Handler
+// Form Submission Handler -> Redirects to thank-you.html
 function handleFormSubmit(event, source) {
   event.preventDefault();
   
   const form = event.target;
-  const formData = new FormData(form);
   
   // Extract values based on form inputs
   let name = form.querySelector('input[type="text"][id$="Name"]')?.value || '';
@@ -52,26 +51,13 @@ function handleFormSubmit(event, source) {
   let city = form.querySelector('input[type="text"][id$="City"]')?.value || '';
   let contactMethod = form.querySelector('input[type="radio"]:checked')?.value || 'Phone';
 
-  console.log(`[Form Submitted from ${source}]`, { name, phone, city, contactMethod });
+  console.log(`[Form Submitted from ${source}] Redirecting to thank-you.html...`, { name, phone, city, contactMethod });
 
-  // Reset form
-  form.reset();
+  // Build thank-you URL with query parameters
+  const thankYouUrl = `thank-you.html?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&city=${encodeURIComponent(city)}&contactMethod=${encodeURIComponent(contactMethod)}&source=${encodeURIComponent(source)}`;
 
-  // Close booking modal if open
-  closeBookingModal();
-
-  // If WhatsApp was preferred, open pre-filled WhatsApp chat in new tab
-  if (contactMethod === 'WhatsApp') {
-    const waText = encodeURIComponent(`हेलो आरोग्य इंडिया, मेरा नाम ${name} है (${city})। मुझे पाइल्स/बवासीर के परामर्श के बारे में जानकारी चाहिए। मेरा नंबर: ${phone}`);
-    window.open(`https://wa.me/919876543210?text=${waText}`, '_blank');
-  }
-
-  // Show Success Modal
-  const successModal = document.getElementById('successModal');
-  if (successModal) {
-    successModal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+  // Redirect to Thank You Page
+  window.location.href = thankYouUrl;
 }
 
 // Accordion Toggle Handler
