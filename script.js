@@ -3,32 +3,43 @@
    Google Sheet Lead Collection Integration Included
 ---------------------------------------------------- 
 
-=== GOOGLE SHEET SETUP INSTRUCTIONS ===
-1. Create a new Google Sheet (e.g. named "Aarogya India Leads").
-2. Go to Extensions -> Apps Script.
-3. Replace all code in Apps Script with the following function:
+=== GOOGLE SHEET APPS SCRIPT CODE (ROBUST VERSION) ===
+Replace all code in Google Apps Script (Extensions -> Apps Script) with this:
 
 ```javascript
 function doPost(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  var data = e.parameter;
-  sheet.appendRow([
-    new Date(),
-    data.name || '',
-    data.phone || '',
-    data.city || '',
-    data.contactMethod || '',
-    data.source || 'Landing Page'
-  ]);
-  return ContentService.createTextOutput(JSON.stringify({"result": "success"}))
-    .setMimeType(ContentService.MimeType.JSON);
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = (e && e.parameter) ? e.parameter : {};
+
+    // Support JSON payload fallback
+    if ((!data.name) && e && e.postData && e.postData.contents) {
+      try { data = JSON.parse(e.postData.contents); } catch(err) {}
+    }
+
+    sheet.appendRow([
+      new Date(),
+      data.name || 'N/A',
+      data.phone || 'N/A',
+      data.city || 'N/A',
+      data.contactMethod || 'N/A',
+      data.source || 'Landing Page'
+    ]);
+
+    return ContentService.createTextOutput(JSON.stringify({"result": "success"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(JSON.stringify({"result": "error", "message": err.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
 }
 ```
 
-4. Click "Deploy" -> "New deployment" -> Select type: "Web app".
-5. Set "Execute as": "Me", "Who has access": "Anyone".
-6. Click "Deploy", authorize permissions, and copy the Web App URL.
-7. Paste your Web App URL into the GOOGLE_SHEET_SCRIPT_URL variable below.
+DEPLOYMENT STEPS:
+1. Click "Deploy" -> "New deployment" -> Select type "Web app".
+2. Set "Execute as": "Me"
+3. Set "Who has access": "Anyone"
+4. Click "Deploy", copy the Web App URL, and paste it into GOOGLE_SHEET_SCRIPT_URL below.
 ---------------------------------------------------- */
 
 // 🔴 Replace this URL with your deployed Google Apps Script Web App URL
@@ -74,9 +85,9 @@ document.addEventListener('keydown', (e) => {
 // Form Submission Handler -> Submits to Google Sheet & Redirects to thank-you.html
 function handleFormSubmit(event, source) {
   event.preventDefault();
-
+  
   const form = event.target;
-
+  
   // Extract values based on form inputs
   let name = form.querySelector('input[type="text"][id$="Name"]')?.value || '';
   let phone = form.querySelector('input[type="tel"]')?.value || '';
@@ -86,22 +97,19 @@ function handleFormSubmit(event, source) {
   console.log(`[Form Submitted from ${source}]`, { name, phone, city, contactMethod });
 
   // Prepare payload for Google Sheet
-  const payload = new URLSearchParams();
-  payload.append('name', name);
-  payload.append('phone', phone);
-  payload.append('city', city);
-  payload.append('contactMethod', contactMethod);
-  payload.append('source', source);
+  const formData = new FormData();
+  formData.append('name', name);
+  formData.append('phone', phone);
+  formData.append('city', city);
+  formData.append('contactMethod', contactMethod);
+  formData.append('source', source);
 
   // Submit to Google Sheet Web App endpoint if configured
   if (GOOGLE_SHEET_SCRIPT_URL && GOOGLE_SHEET_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL') {
     fetch(GOOGLE_SHEET_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors', // Avoids CORS issues with Google Apps Script
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: payload.toString()
+      body: formData
     }).catch(err => console.error('Google Sheet submission error:', err));
   } else {
     console.warn('Google Sheet script URL not set yet. Leads are logged locally.');
@@ -118,7 +126,7 @@ function handleFormSubmit(event, source) {
 function toggleFaq(buttonElement) {
   const faqItem = buttonElement.closest('.faq-item');
   const isActive = faqItem.classList.contains('active');
-
+  
   // Close all open FAQs
   document.querySelectorAll('.faq-item').forEach(item => {
     item.classList.remove('active');
